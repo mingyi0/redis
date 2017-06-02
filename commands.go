@@ -1946,6 +1946,12 @@ func (c *cmdable) ClusterCountKeysInSlot(slot int) *IntCmd {
 	return cmd
 }
 
+func (c *cmdable) ClusterGetKeysInSlot(slot, num int) *StringSliceCmd {
+	cmd := NewStringSliceCmd("cluster", "getkeysinslot", slot, num)
+	c.process(cmd)
+	return cmd
+}
+
 func (c *cmdable) ClusterDelSlots(slots ...int) *StatusCmd {
 	args := make([]interface{}, 2+len(slots))
 	args[0] = "cluster"
